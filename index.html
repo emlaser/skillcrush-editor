@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- jquery & jquery-ui -->
+	<link rel="stylesheet" href="js/jquery-ui/jquery-ui.min.css">
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/jquery-ui/jquery-ui.min.js"></script>
+
+	<!-- fonts -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+	<!-- custom stuff -->
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+	<section class="top">
+		<header>
+			<div class="back-to-class">
+				<a href="#">&lsaquo; Skillcrush 101</a>
+			</div>
+
+			<div class="submit project-buttons">
+				<a href="#">Publish &amp; Submit</a>
+			</div>
+			<div class="save project-buttons">
+				<a href="#">Save</a>
+			</div>
+
+			<!-- <div class="lesson-title"> -->
+			<h5><span>Lesson Challenge:</span> Here's a Challenge!</h5>
+			<!-- </div> -->
+
+
+		</header>
+		<div class="clearfix"></div>
+	</section>
+
+	<section class="alert">
+		this is a hint!
+	</section>
+
+	<section class="project">
+
+		<!-- this won't always show -->
+		<div class="instructions">
+			<header class="panel-header">
+				<button class="button" id="hint">Hint</button>
+				<h4>Instructions</h4>
+			</header>
+			<div class="content">
+				<div class="steps-header">
+					<button class="button" id="prev">&lsaquo;</button>
+					<button class="button" id="next">&rsaquo;</button>
+					<h4><span id="current">1</span> of <span id="total">7</span></h4>
+				</div>
+				<div class="step-content">
+					<h4 class="step-headline">Headline.</h4>
+					<p>Lots of step content.</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- if instructions, add class with-instructions -->
+		<div class="resizable-wrapper with-instructions">
+			<div class="editor">
+				<header class="panel-header">
+					<h4>Code Editor <button id="run-js">Run JS</button></h4>
+
+				</header>
+				<div id="tabs">
+					<ul>
+						<li><a href="#tab-html">index.html</a></li>
+						<li><a href="#tab-css">style.css</a></li>
+						<li><a href="#tab-js">script.js</a></li>
+					</ul>
+					<form method="post" id="project-code">
+						<input type="hidden" id="html-bucket" name="html-bucket" />
+						<input type="hidden" id="css-bucket" name="css-bucket" />
+						<input type="hidden" id="js-bucket" name="js-bucket" />
+
+						<div id="tab-html">
+							<textarea id="html"></textarea>
+						</div>
+						<div id="tab-css">
+							<textarea id="css"></textarea>
+						</div>
+						<div id="tab-js">
+							<textarea id="js"></textarea>
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div class="preview">
+				<header class="panel-header">
+					<h4>Preview</h4>
+				</header>
+				<iframe id="project-preview" sandbox="allow-scripts allow-same-origin"></iframe>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</section>
+
+	<!-- codemirror -->
+	<script src="js/codemirror4.1/lib/codemirror.js"></script>
+	<script src="js/codemirror4.1/mode/xml/xml.js"></script>
+	<script src="js/codemirror4.1/mode/htmlmixed/htmlmixed.js"></script>
+	<script src="js/codemirror4.1/mode/css/css.js"></script>
+	<script src="js/codemirror4.1/mode/javascript/javascript.js"></script>
+	<link rel="stylesheet" href="js/codemirror4.1/lib/codemirror.css">
+
+	<!-- codemirror addons -->
+	<!--<script src="js/codemirror4.1/addon/fold/foldcode.js"></script>
+	<script src="js/codemirror4.1/addon/fold/brace-fold.js"></script>
+	<script src="js/codemirror4.1/addon/fold/comment-fold.js"></script>
+	<script src="js/codemirror4.1/addon/fold/foldgutter.js"></script>
+	<script src="js/codemirror4.1/addon/fold/indent-fold.js"></script>
+	<script src="js/codemirror4.1/addon/fold/markdown-fold.js"></script>
+	<script src="js/codemirror4.1/addon/fold/xml-fold.js"></script>
+	<link rel="stylesheet" href="js/codemirror4.1/addon/fold/foldgutter.css"> -->
+
+	<script src="js/script.js"></script>
+</body>
+
+</html>
