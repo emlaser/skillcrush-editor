@@ -207,71 +207,64 @@ $(document).ready(function() {
 		})
 	}
 
-	// if instructions panel && steps, make deck of cards
+	// if instructions panel & steps, make deck of cards
 	if ($('.instructions').length > 0 && $('.step-content ul li').length > 0) {
 		$(function() {
-			var firstStepElem = $('.step-content ul li').first();
-			var firstStepNum = $(firstStepElem).attr('id');
-			var lastStepElem = $('.step-content ul li').last();
-			var lastStepNum = $(lastStepElem).attr('id');
+			var firstStepNum = $('.step-content ul li').first().attr('id');
+			var lastStepNum = $('.step-content ul li').last().attr('id');
 			var numSteps = $('.step-content ul li').length;
 			var curStepNum;
 
 			if (window.location.hash) {
 				curStepNum = window.location.hash.replace('#step', '');
-				curStepElem = $('.step-content ul').find('li#' + curStepNum);
-				$(curStepElem).addClass('active');
+				$('.step-content ul').find('li#' + curStepNum).addClass('active');
 				$('#current').text(curStepNum);
 			} else {
-				$(firstStepElem).addClass('active');
+				$('.step-content ul li').first().addClass('active');
 				curStepNum = $('.step-content ul').find('li.active').attr('id');
-				if (curStepNum < lastStepNum) {
+				if (lastStepNum > 1 && curStepNum < lastStepNum) {
 					window.location.hash = '#step' + curStepNum;
 				}
 			}
 			
-			if (curStepNum == firstStepNum) {
-				$('.steps-header #prev').hide();
+			// add step numbers to header
+			$('#current').text(curStepNum);
+			$('#total').text(lastStepNum);
+
+			// if not the first step, show the prev button
+			if (curStepNum != firstStepNum) {
+				$('.steps-header #prev').show();
 			}
 
-			if (curStepNum == lastStepNum) {
-				$('.steps-header #next').hide();
+			// if not the last step, show the next button
+			if (curStepNum != lastStepNum) {
+				$('.steps-header #next').show();
 			}
 
-			$('.steps-header #next').click(function() {
-				curStepNum++;
-
-				$('.step-content ul li').removeClass('active');
-
-				$('.step-content ul li#' + curStepNum).addClass('active');
-
-				if (curStepNum == numSteps) {
-					$(this).hide();
-				}
-				if (curStepNum > firstStepNum && curStepNum <= lastStepNum) {
-					$('.steps-header #prev').show();
-				}
-
-				$('#current').text(curStepNum);
-				window.location.hash = 'step' + curStepNum;
-			});
-
-			$('.steps-header #prev').click(function() {
-				curStepNum--;
-
-				$('.step-content ul li').removeClass('active');
-
-				$('.step-content ul li#' + curStepNum).addClass('active');
-
-				if (curStepNum == firstStepNum) {
-					$(this).hide();
-				}
-				if (curStepNum < lastStepNum) {
-					$('.steps-header #next').show();
+			$('.steps-header button').click(function() {
+				var direction = $(this).attr('id'); // prev or next
+				if (direction.toLowerCase() == 'prev') {
+					curStepNum--;
+					if (curStepNum == firstStepNum) {
+						$(this).hide();
+					}
+					if (curStepNum < lastStepNum) {
+						$('.steps-header #next').show();
+					}
+				} else if (direction.toLowerCase() == 'next') {
+					curStepNum++;
+					if (curStepNum == numSteps) {
+						$(this).hide();
+					}
+					if (curStepNum > firstStepNum && curStepNum <= lastStepNum) {
+						$('.steps-header #prev').show();
+					}
 				}
 
-				$('#current').text(curStepNum);
-				window.location.hash = 'step' + curStepNum;
+				$('.step-content ul li').removeClass('active'); // hide all step lis
+				$('.step-content ul li#' + curStepNum).addClass('active'); // show next step li
+				$('#current').text(curStepNum); // update current step number in header
+				window.location.hash = 'step' + curStepNum; // update url
 			});
 		});
 	}

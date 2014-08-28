@@ -200,6 +200,9 @@ body, html {
 .instructions .steps-header h4 #current {
 	font-weight: 700;
 }
+.instructions .steps-header button {
+	display: none;
+}
 .instructions .step-content {
     padding: 30px 15px;
 }

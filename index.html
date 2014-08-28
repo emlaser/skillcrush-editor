@@ -43,7 +43,7 @@
 
 	<section class="project">
 
-		<!-- this won't always show -->
+		<!-- this won't always show; if steps custom field(s) empty, won't be included! -->
 		<div class="instructions">
 			<header class="panel-header">
 				<button class="button" id="hint">Hint</button>
@@ -53,11 +53,12 @@
 				<div class="steps-header">
 					<button class="button" id="prev">&lsaquo;</button>
 					<button class="button" id="next">&rsaquo;</button>
-					<h4><span id="current">1</span> of <span id="total">7</span></h4>
+					<h4><span id="current"></span> of <span id="total"></span></h4>
 				</div>
 				<div class="step-content">
 					<h4 class="step-headline">Headline.</h4>
 					<ul>
+						<!-- these lis will eventually be built with PHP and custom field data -->
 						<li id="1">Lots of step 1 stuff here.</li>
 						<li id="2">Step 2!</li>
 						<li id="3">Step 3!</li>
@@ -74,7 +75,7 @@
 		<div class="resizable-wrapper with-instructions">
 			<div class="editor">
 				<header class="panel-header">
-					<button id="download-code">Download Code</button>
+					<button id="download-code">Download Code</button> <!-- doesn't work yet -->
 					<h4>Code Editor</h4>
 				</header>
 				<div id="tabs">
@@ -100,7 +101,7 @@
 					</form>
 				</div>
 				<footer>
-					<button id="run-js">Run JS</button>
+					<button id="run-js">Run JS</button><!-- this button works! -->
 				</footer>
 			</div>
 
@@ -114,25 +115,25 @@
 		<div class="clearfix"></div>
 	</section>
 
-	<!-- codemirror -->
-	<script src="js/codemirror4.1/lib/codemirror.js"></script>
-	<script src="js/codemirror4.1/mode/xml/xml.js"></script>
-	<script src="js/codemirror4.1/mode/htmlmixed/htmlmixed.js"></script>
-	<script src="js/codemirror4.1/mode/css/css.js"></script>
-	<script src="js/codemirror4.1/mode/javascript/javascript.js"></script>
-	<link rel="stylesheet" href="js/codemirror4.1/lib/codemirror.css">
+<!-- codemirror -->
+<script src="js/codemirror4.1/lib/codemirror.js"></script>
+<script src="js/codemirror4.1/mode/xml/xml.js"></script>
+<script src="js/codemirror4.1/mode/htmlmixed/htmlmixed.js"></script>
+<script src="js/codemirror4.1/mode/css/css.js"></script>
+<script src="js/codemirror4.1/mode/javascript/javascript.js"></script>
+<link rel="stylesheet" href="js/codemirror4.1/lib/codemirror.css">
 
-	<!-- codemirror addons -->
-	<!--<script src="js/codemirror4.1/addon/fold/foldcode.js"></script>
-	<script src="js/codemirror4.1/addon/fold/brace-fold.js"></script>
-	<script src="js/codemirror4.1/addon/fold/comment-fold.js"></script>
-	<script src="js/codemirror4.1/addon/fold/foldgutter.js"></script>
-	<script src="js/codemirror4.1/addon/fold/indent-fold.js"></script>
-	<script src="js/codemirror4.1/addon/fold/markdown-fold.js"></script>
-	<script src="js/codemirror4.1/addon/fold/xml-fold.js"></script>
-	<link rel="stylesheet" href="js/codemirror4.1/addon/fold/foldgutter.css"> -->
+<!-- codemirror addons -->
+<!--<script src="js/codemirror4.1/addon/fold/foldcode.js"></script>
+<script src="js/codemirror4.1/addon/fold/brace-fold.js"></script>
+<script src="js/codemirror4.1/addon/fold/comment-fold.js"></script>
+<script src="js/codemirror4.1/addon/fold/foldgutter.js"></script>
+<script src="js/codemirror4.1/addon/fold/indent-fold.js"></script>
+<script src="js/codemirror4.1/addon/fold/markdown-fold.js"></script>
+<script src="js/codemirror4.1/addon/fold/xml-fold.js"></script>
+<link rel="stylesheet" href="js/codemirror4.1/addon/fold/foldgutter.css"> -->
 
-	<script src="js/script.js"></script>
+<script src="js/script.js"></script>
 </body>
 
 </html>
