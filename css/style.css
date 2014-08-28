@@ -57,6 +57,7 @@ table {
 
 body, html {
 	height: 100%;
+	overflow-y: auto;
 }
 .top {
 	height: 50px;
@@ -124,6 +125,7 @@ body, html {
 }
 .project {
 	height: 100%;
+	overflow-y: auto;
 }
 .project .panel-header {
 	text-transform: uppercase;
@@ -143,7 +145,8 @@ body, html {
     background-color: #2d2d2d;
     color: white;
 }
-.panel-header button {
+.panel-header button,
+.editor footer button {
 	margin-top: 2px;
 	float: right;
 	background-color: #e5e5e5;
@@ -192,6 +195,7 @@ body, html {
 	font: 600 12px/100% 'Open Sans';
 	text-transform: uppercase;
 	color: #505050;
+	padding: 0 33px 0 33px;
 }
 .instructions .steps-header h4 #current {
 	font-weight: 700;
@@ -205,11 +209,15 @@ body, html {
 	font-size:17px;
 	margin-bottom:20px;
 }
-.instructions .step-content p {
+.instructions .step-content ul li {
 	font-family:'open sans';
 	color:#5b5b5b;
 	font-size:15px;
 	line-height:28px;
+	display: none;
+}
+.instructions .step-content ul li.active {
+	display: block;
 }
 .resizable-wrapper {
 	height: 100%;
@@ -301,6 +309,11 @@ body, html {
 	margin-top: 50px;
 	margin-right: 4px;
 	width: 9px;
+}
+.editor footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
 }
 .preview {
 	/*background-color: pink;*/

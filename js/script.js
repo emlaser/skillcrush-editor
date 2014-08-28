@@ -118,7 +118,7 @@ $(document).ready(function() {
 
 	var htmlCodeMirror, cssCodeMirror, jsCodeMirror;
 
-	// HTML tab codemirrorified
+	// HTML tab codemirror
 	if ($('#html').length > 0) {
 		var htmlBox = document.getElementById('html');
 		htmlCodeMirror = CodeMirror.fromTextArea(htmlBox, {
@@ -149,7 +149,7 @@ $(document).ready(function() {
 		}
 	}
 
-	// CSS tab codemirrorified
+	// CSS tab codemirror
 	if ($('#css').length > 0) {
 		var cssBox = document.getElementById('css');
 		cssCodeMirror = CodeMirror.fromTextArea(cssBox, {
@@ -176,7 +176,7 @@ $(document).ready(function() {
 		}
 	}
 
-	// JS tab codemirrorified
+	// JS tab codemirror
 	if ($('#js').length > 0) {
 		var jsBox = document.getElementById('js');
 		jsCodeMirror = CodeMirror.fromTextArea(jsBox, {
@@ -205,5 +205,74 @@ $(document).ready(function() {
 		$('#run-js').click(function() {
 			run_js();
 		})
+	}
+
+	// if instructions panel && steps, make deck of cards
+	if ($('.instructions').length > 0 && $('.step-content ul li').length > 0) {
+		$(function() {
+			var firstStepElem = $('.step-content ul li').first();
+			var firstStepNum = $(firstStepElem).attr('id');
+			var lastStepElem = $('.step-content ul li').last();
+			var lastStepNum = $(lastStepElem).attr('id');
+			var numSteps = $('.step-content ul li').length;
+			var curStepNum;
+
+			if (window.location.hash) {
+				curStepNum = window.location.hash.replace('#step', '');
+				curStepElem = $('.step-content ul').find('li#' + curStepNum);
+				$(curStepElem).addClass('active');
+				$('#current').text(curStepNum);
+			} else {
+				$(firstStepElem).addClass('active');
+				curStepNum = $('.step-content ul').find('li.active').attr('id');
+				if (curStepNum < lastStepNum) {
+					window.location.hash = '#step' + curStepNum;
+				}
+			}
+			
+			if (curStepNum == firstStepNum) {
+				$('.steps-header #prev').hide();
+			}
+
+			if (curStepNum == lastStepNum) {
+				$('.steps-header #next').hide();
+			}
+
+			$('.steps-header #next').click(function() {
+				curStepNum++;
+
+				$('.step-content ul li').removeClass('active');
+
+				$('.step-content ul li#' + curStepNum).addClass('active');
+
+				if (curStepNum == numSteps) {
+					$(this).hide();
+				}
+				if (curStepNum > firstStepNum && curStepNum <= lastStepNum) {
+					$('.steps-header #prev').show();
+				}
+
+				$('#current').text(curStepNum);
+				window.location.hash = 'step' + curStepNum;
+			});
+
+			$('.steps-header #prev').click(function() {
+				curStepNum--;
+
+				$('.step-content ul li').removeClass('active');
+
+				$('.step-content ul li#' + curStepNum).addClass('active');
+
+				if (curStepNum == firstStepNum) {
+					$(this).hide();
+				}
+				if (curStepNum < lastStepNum) {
+					$('.steps-header #next').show();
+				}
+
+				$('#current').text(curStepNum);
+				window.location.hash = 'step' + curStepNum;
+			});
+		});
 	}
 });
