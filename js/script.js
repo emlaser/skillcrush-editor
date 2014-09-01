@@ -99,9 +99,39 @@ $(document).ready(function() {
 	}
 
 	// add resizable handle to editor panel
-	$('.editor').resizable({
+	/*$('.editor').resizable({
 		handles: 'e'
+	});*/
+
+	/*var innerDiv2 = $( '.editor' );
+ 
+	innerDiv2.resizable({
+		handles: 'e',
+		minWidth : '22%',
+		maxWidth : '78%',
+		resize: function( event, ui ) {
+		  var remainingSpace = $(this).parent().width() - $(this).outerWidth(true);
+		  var divOne = $(this).next();
+		  var divOneWidth = remainingSpace - ( divOne.outerWidth(true) - divOne.width() ) - 1;
+		  divOne.css( 'width', divOneWidth + 'px' );
+		  divOne.find('iframe').css( 'width', divOneWidth + 'px' );
+		}
+	});*/
+	$(function(){
+	  	var innerDiv2 = $('.editor');
+	  	innerDiv2.resizable({
+		    handles: 'e',
+		    minWidth : '22%',
+		    maxWidth : '78%',
+		    resize: function( event, ui ) {
+		      var remainingSpace = $(this).parent().width() - $(this).outerWidth(true);
+		      var divOne = $(this).next();
+		      var divOneWidth = remainingSpace - 1 -( divOne.outerWidth(true) - divOne.width() );
+		      divOne.css( 'width', divOneWidth + 'px' );
+		    }
+	  	});
 	});
+
 
 	// tab up the code areas
 	$('.editor #tabs').tabs();
