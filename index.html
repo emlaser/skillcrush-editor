@@ -56,16 +56,46 @@
 					<h4><span id="current"></span> of <span id="total"></span></h4>
 				</div>
 				<div class="step-content">
-					<h4 class="step-headline">Headline.</h4>
+					<!-- This is for when we integrate into our codebase! -->
+					<!--<?php $steps = get_field('project_steps'); ?>
+					<ul>
+						<?php foreach ($steps as $k => $v): ?>
+							<li id="<?php echo $k + 1 ?>">
+								<h4 class="step-headline"><?php echo $v['title'] ?></h4>
+								<?php echo $v['description'] ?>
+							</li>
+						<?php endforeach; ?>
+					</ul> -->
 					<ul>
 						<!-- these lis will eventually be built with PHP and custom field data -->
-						<li id="1">Lots of step 1 stuff here.</li>
-						<li id="2">Step 2!</li>
-						<li id="3">Step 3!</li>
-						<li id="4">Step 4!</li>
-						<li id="5">Step 5!</li>
-						<li id="6">Step 6!</li>
-						<li id="7">Step 7!</li>
+						<li id="1">
+							<h4 class="step-headline">First Headline.</h4>
+							Lots of step 1 stuff here.
+						</li>
+						<li id="2">
+							<h4 class="step-headline">Second Headline.</h4>
+							Step 2!
+						</li>
+						<li id="3">
+							<h4 class="step-headline">Third Headline.</h4>
+							Step 3!
+						</li>
+						<li id="4">
+							<h4 class="step-headline">Fourth Headline.</h4>
+							Step 4!
+						</li>
+						<li id="5">
+							<h4 class="step-headline">Fifth Headline.</h4>
+							Step 5!
+						</li>
+						<li id="6">
+							<h4 class="step-headline">Sixth Headline.</h4>
+							Step 6!
+						</li>
+						<li id="7">
+							<h4 class="step-headline">Seventh Headline.</h4>
+							Step 7!
+						</li>
 					</ul>
 				</div>
 			</div>
