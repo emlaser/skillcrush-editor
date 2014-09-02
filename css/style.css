@@ -298,7 +298,10 @@ body, html {
 	padding: 16px 24px;
 }
 .editor #tabs ul li.ui-state-active a {
-	padding: 15px 24px 16px 24px;
+	padding: 15px 23px 16px 23px;
+}
+.editor #tabs ul li.ui-state-active:first-child a {
+	padding: 15px 23px 16px 24px;
 }
 .editor #tabs .ui-tabs-panel {
 	border-top: 1px solid #e3e2e2;
@@ -360,4 +363,19 @@ body, html {
 }
 .download-code-btn {
 	box-shadow: -5px 0 5px #fff;
+}
+
+@media screen and (max-width: 1120px) {
+	.editor {
+		min-width: 295px;
+	}
+	.editor #tabs ul li a {
+		padding: 16px 10px;
+	}
+	.editor #tabs ul li.ui-state-active a {
+		padding: 15px 9px 16px 9px;
+	}
+	.editor #tabs ul li.ui-state-active:first-child a {
+		padding: 15px 9px 16px 10px;
+	}
 }
