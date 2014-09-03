@@ -61,6 +61,11 @@ table {
 body, html {
 	height: 100%;
 }
+/* remove ugly default blue outline since we don't care about accessibility for this! */
+button:focus,
+li a:focus {
+	outline: none;
+}
 .top {
 	height: 50px;
 	overflow: hidden;
@@ -78,7 +83,7 @@ body, html {
 }
 .top .back-to-class {
 	float: left;
-	padding: 17px 30px;
+	/*padding: 17px 30px;*/
 	border: 1px solid #f2f2f2;
 }
 .top .back-to-class a {
@@ -86,10 +91,12 @@ body, html {
 	text-decoration: none;
 	font: 600 12px/100% 'Open Sans';
 	color: #f16059;
+	display: block;
+	padding: 19px 30px;
 }
 .top .project-buttons {
 	float: right;
-	padding: 17px 30px;
+	/*padding: 17px 30px;*/
 	border-left: 1px solid #f2f2f2;
 }
 .top .project-buttons.submit {
@@ -100,6 +107,8 @@ body, html {
 	text-decoration: none;
 	font: 600 12px/100% 'Open Sans';
 	color: #505050;
+	display: block;
+	padding: 19px 30px;
 }
 .alert {
     background: none repeat scroll 0 0 #f6f4f4;
@@ -115,6 +124,10 @@ body, html {
 .alert p {
     line-height: 1;
     margin-bottom: 7px;
+    display: none;
+}
+.alert p.active {
+	display: block;
 }
 .alert p span {
 	font-weight:bold;
