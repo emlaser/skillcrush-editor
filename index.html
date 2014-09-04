@@ -15,6 +15,8 @@
 </head>
 
 <body>
+	<?php // $steps = get_field('project_steps'); ?>
+
 	<section class="top">
 		<header>
 			<div class="back-to-class">
@@ -28,17 +30,25 @@
 				<a href="#">Save</a>
 			</div>
 
-			<!-- <div class="lesson-title"> -->
 			<h5><span>Lesson Challenge:</span> Here's a Challenge!</h5>
-			<!-- </div> -->
-
-
 		</header>
 		<div class="clearfix"></div>
 	</section>
 
 	<section class="alert">
-		<p><span>Hint:</span> this is a hint! And here is a tiny little bit of <code>code!</code> yep!</p>
+		<!-- This is for when we integrate into our codebase! -->
+		<!-- <?php foreach ($steps as $k => $v): ?>
+			<p id="hint-<?php echo $k + 1 ?>"><span>Hint:</span> <?php echo $v ?></p>
+		<?php endforeach; ?> -->
+
+		<!-- placeholder hint before integration -->
+		<p id="hint-1" class="hint"><span>Hint:</span> #1 This is a hint! And here is a tiny little bit of <code>code!</code> yep!</p>
+		<p id="hint-2" class="hint"><span>Hint:</span> #2 This is a hint! And here is a tiny little bit of <code>code!</code> yep!</p>
+		<p id="hint-3" class="hint"><span>Hint:</span> #3 This is a hint! And here is a tiny little bit of <code>code!</code> yep!</p>
+		<p id="hint-4" class="hint"><span>Hint:</span> #4 This is a hint! And here is a tiny little bit of <code>code!</code> yep!</p>
+		<p id="hint-5" class="hint"><span>Hint:</span> #5 This is a hint! And here is a tiny little bit of <code>code!</code> yep!</p>
+		<p id="hint-6" class="hint"><span>Hint:</span> #6 This is a hint! And here is a tiny little bit of <code>code!</code> yep!</p>
+		<p id="hint-7" class="hint"><span>Hint:</span> #7 This is a hint! And here is a tiny little bit of <code>code!</code> yep!</p>
 	</section>
 
 	<section class="project">
@@ -56,16 +66,47 @@
 					<h4><span id="current"></span> of <span id="total"></span></h4>
 				</div>
 				<div class="step-content">
-					<h4 class="step-headline">Headline.</h4>
+					<!-- This is for when we integrate into our codebase! -->
+					<!-- <ul>
+						<?php foreach ($steps as $k => $v): ?>
+							<li id="step-<?php echo $k + 1 ?>">
+								<h4 class="step-headline"><?php echo $v['title'] ?></h4>
+								<?php echo $v['description'] ?>
+							</li>
+						<?php endforeach; ?>
+					</ul> -->
+
 					<ul>
-						<!-- these lis will eventually be built with PHP and custom field data -->
-						<li id="1">Lots of step 1 stuff here.</li>
-						<li id="2">Step 2!</li>
-						<li id="3">Step 3!</li>
-						<li id="4">Step 4!</li>
-						<li id="5">Step 5!</li>
-						<li id="6">Step 6!</li>
-						<li id="7">Step 7!</li>
+						<!-- placeholder lis before integration -->
+						<li id="step-1" class="step">
+							<h4 class="step-headline">First Headline.</h4>
+							Lots of step 1 stuff here.
+							<span
+						</li>
+						<li id="step-2" class="step">
+							<h4 class="step-headline">Second Headline.</h4>
+							Step 2!
+						</li>
+						<li id="step-3" class="step">
+							<h4 class="step-headline">Third Headline.</h4>
+							Step 3!
+						</li>
+						<li id="step-4" class="step">
+							<h4 class="step-headline">Fourth Headline.</h4>
+							Step 4!
+						</li>
+						<li id="step-5" class="step">
+							<h4 class="step-headline">Fifth Headline.</h4>
+							Step 5!
+						</li>
+						<li id="step-6" class="step">
+							<h4 class="step-headline">Sixth Headline.</h4>
+							Step 6!
+						</li>
+						<li id="step-7" class="step">
+							<h4 class="step-headline">Seventh Headline.</h4>
+							Step 7!
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -76,7 +117,7 @@
 			<div class="editor">
 				<header class="panel-header">
 					<button id="run-js">Run JS</button><!-- this button works! -->
-					<button id="download-code" class="download-code-btn">Download Code</button> <!-- doesn't work yet -->
+					<button id="download-code" class="download-code-btn">Download Code</button> <!-- doesn't work yet, will integrate later -->
 					<h4>Code Editor</h4>
 				</header>
 				<div id="tabs">

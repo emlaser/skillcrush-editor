@@ -223,21 +223,23 @@ $(document).ready(function() {
 		})
 	}
 
-	// if instructions panel & steps, make deck of cards
+	// if instructions panel & steps, make deck of cards with hints!
 	if ($('.instructions').length > 0 && $('.step-content ul li').length > 0) {
 		$(function() {
-			var firstStepNum = $('.step-content ul li').first().attr('id');
-			var lastStepNum = $('.step-content ul li').last().attr('id');
+			var firstStepNum = $('.step-content ul li').first().attr('id').replace('step-', '');
+			var lastStepNum = $('.step-content ul li').last().attr('id').replace('step-', '');
 			var numSteps = $('.step-content ul li').length;
 			var curStepNum;
 
 			if (window.location.hash) {
 				curStepNum = window.location.hash.replace('#step', '');
-				$('.step-content ul').find('li#' + curStepNum).addClass('active');
+				$('.step-content ul').find('li#step-' + curStepNum).addClass('active');
+				$('.alert p#hint-' + curStepNum).addClass('active');
 				$('#current').text(curStepNum);
 			} else {
 				$('.step-content ul li').first().addClass('active');
-				curStepNum = $('.step-content ul').find('li.active').attr('id');
+				$('.alert p').first().addClass('active');
+				curStepNum = $('.step-content ul').find('li.active').attr('id').replace('step-', '');
 				if (lastStepNum > 1 && curStepNum < lastStepNum) {
 					window.location.hash = '#step' + curStepNum;
 				}
@@ -278,9 +280,11 @@ $(document).ready(function() {
 				}
 
 				$('.step-content ul li').removeClass('active'); // hide all step lis
-				$('.step-content ul li#' + curStepNum).addClass('active'); // show next step li
+				$('.step-content ul li#step-' + curStepNum).addClass('active'); // show next step li
+				$('.alert p').removeClass('active'); // hide all hints
+				$('.alert p#hint-' + curStepNum).addClass('active'); // show next hint
 				$('#current').text(curStepNum); // update current step number in header
-				window.location.hash = 'step' + curStepNum; // update url
+				window.location.hash = 'step' + curStepNum; // update url hash
 			});
 		});
 	}
