@@ -103,22 +103,8 @@ $(document).ready(function() {
 		handles: 'e'
 	});*/
 
-	/*var innerDiv2 = $( '.editor' );
- 
-	innerDiv2.resizable({
-		handles: 'e',
-		minWidth : '22%',
-		maxWidth : '78%',
-		resize: function( event, ui ) {
-		  var remainingSpace = $(this).parent().width() - $(this).outerWidth(true);
-		  var divOne = $(this).next();
-		  var divOneWidth = remainingSpace - ( divOne.outerWidth(true) - divOne.width() ) - 1;
-		  divOne.css( 'width', divOneWidth + 'px' );
-		  divOne.find('iframe').css( 'width', divOneWidth + 'px' );
-		}
-	});*/
 	$(function(){
-	  	var innerDiv2 = $('.editor');
+		var innerDiv2 = $('.editor');
 	  	innerDiv2.resizable({
 		    handles: 'e',
 		    minWidth : '22%',

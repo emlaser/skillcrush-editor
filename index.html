@@ -51,8 +51,8 @@
 			</header>
 			<div class="content">
 				<div class="steps-header">
-					<button class="button" id="prev">&lsaquo;</button>
-					<button class="button" id="next">&rsaquo;</button>
+					<button class="button" id="prev"></button>
+					<button class="button" id="next"></button>
 					<h4><span id="current"></span> of <span id="total"></span></h4>
 				</div>
 				<div class="step-content">
@@ -101,17 +101,16 @@
 						</div>
 					</form>
 				</div>
-				<footer>
-					<button id="run-js">Run JS</button><!-- this button works! -->
-				</footer>
 			</div>
 
-			<div class="preview">
+			<div class="preview open-console">
 				<header class="panel-header">
 					<h4>Preview</h4>
 				</header>
 				<iframe id="project-preview" sandbox="allow-scripts allow-same-origin"></iframe>
-				<div id="output"></div>
+				<div id="output" class="console-log">
+					<textarea></textarea>
+				</div>
 			</div>
 		</div>
 		<div class="clearfix"></div>
