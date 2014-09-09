@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
 
 	// jeffy poo's code
@@ -99,13 +100,18 @@ $(document).ready(function() {
 	}
 
 	// add resizable handle to editor panel
-	/*$('.editor').resizable({
-		handles: 'e'
-	});*/
+	/**/
+
 
 	$(function(){
 		var innerDiv2 = $('.editor');
 	  	innerDiv2.resizable({
+	  		start: function(event, ui) {
+           		$("#mask").css("display","block");
+	        },
+	        stop: function(event, ui) {
+	        	$("#mask").css("display","none");
+	        },
 		    handles: 'e',
 		    minWidth : '22%',
 		    maxWidth : '78%',
@@ -117,7 +123,6 @@ $(document).ready(function() {
 		    }
 	  	});
 	});
-
 
 	// tab up the code areas
 	$('.editor #tabs').tabs();
@@ -288,4 +293,9 @@ $(document).ready(function() {
 			});
 		});
 	}
+
+	// Hide js console
+	$('.console-log .alert-close').click(function(){
+		$('.console-log').slideUp();
+	});
 });

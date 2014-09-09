@@ -144,12 +144,17 @@
 				</div>
 			</div>
 
-			<div class="preview open-console">
+			<div class="preview"> <!-- ADD THIS CLASS< TO SHOW CONSOLE  open-console -->
 				<header class="panel-header">
 					<h4>Preview</h4>
 				</header>
 				<iframe id="project-preview" sandbox="allow-scripts allow-same-origin"></iframe>
+				<div id="mask"></div>
 				<div id="output" class="console-log">
+					<header class="panel-header">
+						<h4>JS Console</h4>
+						<span class="alert-close">&times;</span>
+					</header>
 					<textarea></textarea>
 				</div>
 			</div>
