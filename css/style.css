@@ -254,7 +254,7 @@ input[type="submit"] {
 	bottom: 0;
 	right: 0;
 	margin: auto;
-	background:  url(../img/editor-arrows.png) no-repeat 0 100%;
+	/*background:  url(../img/editor-arrows.png) no-repeat 0 100%;*/
 }
 .instructions .steps-header #prev {
 	float: left;
@@ -748,7 +748,7 @@ input[type="submit"] {
 	content: '';
 	display: inline-block;
 	margin-right: 5px;
-	background: url(../img/global/editor-arrows.png) no-repeat 0 0;
+	/*background: url(../img/global/editor-arrows.png) no-repeat 0 0;*/
 	width: 5px;
 	height: 8px;
 }
