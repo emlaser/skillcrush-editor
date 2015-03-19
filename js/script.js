@@ -1,5 +1,6 @@
-
 $(document).ready(function() {
+
+	$('#tutorials-css').remove(); // removed tutorial css, because it's crushed your styles
 
 	// jeffy poo's code
 	// try { throw new Error('yo!') } catch (e) { window.wtf = e.toString(); alert(window.wtf); }
@@ -30,7 +31,7 @@ $(document).ready(function() {
 		}
 
 		if (html) {
-			$('#project-code').find('#html-bucket').val(html);
+			$('#form-code').find('#html-bucket').val(html);
 			if (preview) {
 				preview.open();
 				preview.write(html);
@@ -38,11 +39,11 @@ $(document).ready(function() {
 			}
 		}
 		if (css) {
-			$('#project-code').find('#css-bucket').val(css);
+			$('#form-code').find('#css-bucket').val(css);
 			$('#project-preview').contents().find('head').append('<style>' + css + '</style>');
 		}
 		if (js) {
-			$('#project-code').find('#js-bucket').val(js);
+			$('#form-code').find('#js-bucket').val(js);
 		}
 
 		if ($('#tab-js').length > 0) {
@@ -74,37 +75,33 @@ $(document).ready(function() {
 		}
 
 		if (js) {
-			// try {
-				// eval(js); // no. bad. just an experiment.
+			// prepare html
+			if (html.length > 0) {
+				html = '<body>' + html + '<script type="text/javascript">' + js + '</script></body>';
+			} else {
+				html = '<html><head></head><body><script type="text/javascript">' + js + '</script></body></html>';
+			}
 
-				// prepare html
-				if (html.length > 0) {
-					html = '<body>' + html + '<script type="text/javascript">' + js + '</script></body>';
-				} else {
-					html = '<html><head></head><body><script type="text/javascript">' + js + '</script></body></html>';
-				}
+			// write html / js
+			preview.open();
+			preview.write(html);
+			preview.close();
 
-				// write html / js
-				preview.open();
-				preview.write(html);
-				preview.close();
-
-				// write css
-				if (css.length > 0) {
-					$(previewFrame).contents().find('head').append('<style>' + css + '</style>');
-				}
-			// } catch(e) {
-			// 	console.log('you haz errors: ' + e);
-			// }
+			// write css
+			if (css.length > 0) {
+				$(previewFrame).contents().find('head').append('<style>' + css + '</style>');
+			}
+			if(window.sandbox) {
+				//sandbox.model.sandboxFrame.contentDocument.open();
+				//sandbox.model.sandboxFrame.contentDocument.write(html);
+				//sandbox.model.sandboxFrame.contentDocument.close();
+				//sandbox.model.evaluate(js);
+			}
 		}
 	}
 
-	// add resizable handle to editor panel
-	/**/
-
-
 	$(function(){
-		var innerDiv2 = $('.editor');
+		var innerDiv2 = $('.project-editor');
 	  	innerDiv2.resizable({
 	  		start: function(event, ui) {
            		$("#mask").css("display","block");
@@ -125,15 +122,16 @@ $(document).ready(function() {
 	});
 
 	// tab up the code areas
-	$('.editor #tabs').tabs();
+	$('.project-editor #tabs').tabs();
+
+	$('.single-sc_projects #hint, .single-user_challenges #hint, .single-user_102_challenges #hint').on('click', function(e) {
+		e.preventDefault();
+		$('.hint-text').addClass('active');
+	});
 
 	// expand / collapse hint section
-	$('#hint').click(function() {
-		if ($('.alert').is(':visible')) {
-			$('.alert').slideUp();
-		} else {
-			$('.alert').slideDown();
-		}
+	$('.button#hint').click(function() {
+		$('.alert').slideToggle();
 		$(this).toggleClass('active', 400);
 	});
 
@@ -166,6 +164,7 @@ $(document).ready(function() {
 		});
 
 		if (htmlCodeMirror) {
+			update_preview();
 			htmlCodeMirror.on('change', update_preview);
 		}
 	}
@@ -193,6 +192,7 @@ $(document).ready(function() {
 		});
 
 		if (cssCodeMirror) {
+			update_preview();
 			cssCodeMirror.on('change', update_preview);
 		}
 	}
@@ -220,82 +220,140 @@ $(document).ready(function() {
 		});
 
 		if (jsCodeMirror) {
+			update_preview();
 			jsCodeMirror.on('change', update_preview);
 		}
 
-		$('#run-js').click(function() {
+		$('#run-js').click(function(e) {
+			e.preventDefault();
 			run_js();
 		})
 	}
 
 	// if instructions panel & steps, make deck of cards with hints!
-	if ($('.instructions').length > 0 && $('.step-content ul li').length > 0) {
+	if ($('.instructions').length > 0 && $('.step-list li').length > 0) {
 		$(function() {
-			var firstStepNum = $('.step-content ul li').first().attr('id').replace('step-', '');
-			var lastStepNum = $('.step-content ul li').last().attr('id').replace('step-', '');
-			var numSteps = $('.step-content ul li').length;
-			var curStepNum;
+			$('.step-list').each(function() {
+				$li = $(this).find('> li');
+				var firstStepNum = $li.first().attr('data-id').replace('step-', '');
+				if ($('li.code-editor').length > 0) {
+					var lastStepNum = $li.last().prev().attr('data-id').replace('step-', '');
+				} else {
+					var lastStepNum = $li.last().attr('data-id').replace('step-', '');
+				}
+				var numSteps = $li.length;
+				var curStepNum;
 
-			if (window.location.hash) {
-				curStepNum = window.location.hash.replace('#step', '');
-				$('.step-content ul').find('li#step-' + curStepNum).addClass('active');
-				$('.alert p#hint-' + curStepNum).addClass('active');
+				if (window.location.hash) {
+					curStepNum = window.location.hash.replace('#step', '');
+					$(this).find('> li').removeClass('active');
+					if ($('.step-list.right > li[data-id="step-' + curStepNum + '"]').hasClass('editor-with-js') || $('.step-list.right > li[data-id="step-' + curStepNum + '"]').hasClass('editor-no-js')) {
+						if ($(this).hasClass('right')) {
+							var type = $('.step-list.right > li[data-id="step-' + curStepNum + '"]').data('type');
+							var editorLi = $(this).find('.code-editor');
+							$(editorLi).addClass('active ' + type);
+							if (type == 'editor-with-js') {
+								$('#run-js, #tab-js, #tabs .js-tab').show();
+							} else {
+								$('#run-js, #tab-js, #tabs .js-tab').hide();
+							}
+						} else {
+							$(this).find('li[data-id="step-' + curStepNum + '"]').addClass('active');
+						}
+					} else {
+						$('.step-list.right > li[data-id="step-' + curStepNum + '"]').addClass('active');
+						// $(this).find('li[data-id="step-' + curStepNum + '"]').addClass('active');
+					}
+					// $('.step-list.right > li[data-id="step-' + curStepNum + '"]').addClass('active');
+					$('.alert p#hint-' + curStepNum).addClass('active');
+					$('#current').text(curStepNum);
+				} else {
+					$li.first().addClass('active');
+					$('.alert p').first().addClass('active');
+					curStepNum = $(this).find('li.active').attr('data-id').replace('step-', '');
+					if (lastStepNum > 1 && curStepNum < lastStepNum) {
+						window.location.hash = '#step' + curStepNum;
+					}
+				}
+				
+				// add step numbers to header
 				$('#current').text(curStepNum);
-			} else {
-				$('.step-content ul li').first().addClass('active');
-				$('.alert p').first().addClass('active');
-				curStepNum = $('.step-content ul').find('li.active').attr('id').replace('step-', '');
-				if (lastStepNum > 1 && curStepNum < lastStepNum) {
-					window.location.hash = '#step' + curStepNum;
-				}
-			}
-			
-			// add step numbers to header
-			$('#current').text(curStepNum);
-			$('#total').text(lastStepNum);
+				$('#total').text(lastStepNum);
 
-			// if not the first step, show the prev button
-			if (curStepNum != firstStepNum) {
-				$('.steps-header #prev').show();
-			}
-
-			// if not the last step, show the next button
-			if (curStepNum != lastStepNum) {
-				$('.steps-header #next').show();
-			}
-
-			$('.steps-header button').click(function() {
-				var direction = $(this).attr('id'); // prev or next
-				if (direction.toLowerCase() == 'prev') {
-					curStepNum--;
-					if (curStepNum == firstStepNum) {
-						$(this).hide();
-					}
-					if (curStepNum < lastStepNum) {
-						$('.steps-header #next').show();
-					}
-				} else if (direction.toLowerCase() == 'next') {
-					curStepNum++;
-					if (curStepNum == numSteps) {
-						$(this).hide();
-					}
-					if (curStepNum > firstStepNum && curStepNum <= lastStepNum) {
-						$('.steps-header #prev').show();
-					}
+				// if not the first step, show the prev button
+				if (curStepNum != firstStepNum) {
+					$('.steps-header #prev').show();
 				}
 
-				$('.step-content ul li').removeClass('active'); // hide all step lis
-				$('.step-content ul li#step-' + curStepNum).addClass('active'); // show next step li
-				$('.alert p').removeClass('active'); // hide all hints
-				$('.alert p#hint-' + curStepNum).addClass('active'); // show next hint
-				$('#current').text(curStepNum); // update current step number in header
-				window.location.hash = 'step' + curStepNum; // update url hash
+				// if not the last step, show the next button
+				if (curStepNum != lastStepNum) {
+					$('.steps-header #next').show();
+				}
+
+				$('.steps-header button').click(function() {
+					var direction = $(this).attr('id'); // prev or next
+					if (direction.toLowerCase() == 'prev') {
+						curStepNum--;
+						if (curStepNum == firstStepNum) {
+							$(this).hide();
+						}
+						if (curStepNum < lastStepNum) {
+							$('.steps-header #next').show();
+						}
+					} else if (direction.toLowerCase() == 'next') {
+						curStepNum++;
+						if (curStepNum == numSteps) {
+							$(this).hide();
+						}
+						if (curStepNum > firstStepNum && curStepNum <= lastStepNum) {
+							$('.steps-header #prev').show();
+						}
+					}
+					$('.alert').slideUp('fast');
+					$('.button#hint').removeClass('active');
+
+					$('.step-list').each(function() {
+						$(this).find('> li').removeClass('active');
+						if ($('.step-list.right > li[data-id="step-' + curStepNum + '"]').hasClass('editor-with-js') || $('.step-list.right > li[data-id="step-' + curStepNum + '"]').hasClass('editor-no-js')) {
+							if ($(this).hasClass('right')) {
+								var type = $('.step-list.right > li[data-id="step-' + curStepNum + '"]').data('type');
+								var editorLi = $(this).find('.code-editor');
+								$(editorLi).addClass('active ' + type);
+								if (type == 'editor-with-js') {
+									$('#run-js, #tab-js, #tabs .js-tab').show();
+								} else {
+									$('#run-js, #tab-js, #tabs .js-tab').hide();
+								}
+							} else {
+								$(this).find('li[data-id="step-' + curStepNum + '"]').addClass('active');
+							}
+						} else {
+							$(this).find('li[data-id="step-' + curStepNum + '"]').addClass('active');
+						}
+					});
+					//$('.step-list > li').removeClass('active'); // hide all step list
+					//$('.step-list > li[data-id="' + curStepNum + '"]').addClass('active');// show next step li
+					$('.alert p').removeClass('active'); // hide all hints
+					$('.alert p#hint-' + curStepNum).addClass('active'); // show next hint
+					$('#current').text(curStepNum); // update current step number in header
+					window.location.hash = 'step' + curStepNum; // update url hash
+				});
 			});
+			
 		});
 	}
 
 	// Hide js console
-	$('.console-log .alert-close').click(function(){
+	$('.console-log .alert-close').click(function() {
 		$('.console-log').slideUp();
 	});
+
+	// project view toggle
+	$('#edit-project-toggle, #back-to-project-toggle').click(function(e) {
+		e.preventDefault();
+		$('#share-view, #edit-view').toggle();
+	});
+
+	// i'm pretty sure we don't need this
+	// $('input[type="file"]').wrap('<div class="file_upload button"></div>');
 });

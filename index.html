@@ -15,152 +15,126 @@
 </head>
 
 <body>
-	<?php // $steps = get_field('project_steps'); ?>
-
 	<section class="top">
 		<header>
 			<div class="back-to-class">
-				<a href="#">&lsaquo; Skillcrush 101</a>
+				<a href="#">Back to Lesson</a>
 			</div>
 
-			<div class="submit project-buttons">
-				<a href="#">Publish &amp; Submit</a>
+			<div class="publish project-buttons">
+				<form method="post" action="" id="project"><!-- start full page form -->
+					<input type="submit" name="project-publish" value="Publish" />
+					<input type="submit" name="project-unpublish" value="Unpublish" />
 			</div>
+
 			<div class="save project-buttons">
-				<a href="#">Save</a>
+				<input type="submit" name="project-save" value="Save" />
 			</div>
 
-			<h5><span>Lesson Challenge:</span> Here's a Challenge!</h5>
+			<div class="complete-challenge project-buttons">
+				<input type="submit" name="project-complete-challenge" value="Complete Challenge" />
+			</div>
+
+			<h5>Skillcrush Project</h5>
 		</header>
 		<div class="clearfix"></div>
 	</section>
 
-	<section class="alert">
-		<!-- This is for when we integrate into our codebase! -->
-		<!-- <?php foreach ($steps as $k => $v): ?>
-			<p id="hint-<?php echo $k + 1 ?>"><span>Hint:</span> <?php echo $v ?></p>
-		<?php endforeach; ?> -->
 
-		<!-- placeholder hint before integration -->
-		<p id="hint-1" class="hint"><span>Hint:</span> #1 This is a hint! And here is a tiny little bit of <code>code!</code> yep!</p>
-		<p id="hint-2" class="hint"><span>Hint:</span> #2 This is a hint! And here is a tiny little bit of <code>code!</code> yep!</p>
-		<p id="hint-3" class="hint"><span>Hint:</span> #3 This is a hint! And here is a tiny little bit of <code>code!</code> yep!</p>
-		<p id="hint-4" class="hint"><span>Hint:</span> #4 This is a hint! And here is a tiny little bit of <code>code!</code> yep!</p>
-		<p id="hint-5" class="hint"><span>Hint:</span> #5 This is a hint! And here is a tiny little bit of <code>code!</code> yep!</p>
-		<p id="hint-6" class="hint"><span>Hint:</span> #6 This is a hint! And here is a tiny little bit of <code>code!</code> yep!</p>
-		<p id="hint-7" class="hint"><span>Hint:</span> #7 This is a hint! And here is a tiny little bit of <code>code!</code> yep!</p>
-	</section>
 
 	<section class="project">
 
-		<!-- this won't always show; if steps custom field(s) empty, won't be included! -->
-		<div class="instructions">
-			<header class="panel-header">
-				<button class="button" id="hint">Hint</button>
-				<h4>Instructions</h4>
-			</header>
-			<div class="content">
-				<div class="steps-header">
-					<button class="button" id="prev"></button>
-					<button class="button" id="next"></button>
-					<h4><span id="current"></span> of <span id="total"></span></h4>
-				</div>
-				<div class="step-content">
-					<!-- This is for when we integrate into our codebase! -->
-					<!-- <ul>
-						<?php foreach ($steps as $k => $v): ?>
-							<li id="step-<?php echo $k + 1 ?>">
-								<h4 class="step-headline"><?php echo $v['title'] ?></h4>
-								<?php echo $v['description'] ?>
-							</li>
-						<?php endforeach; ?>
-					</ul> -->
-
-					<ul>
-						<!-- placeholder lis before integration -->
-						<li id="step-1" class="step">
-							<h4 class="step-headline">First Headline.</h4>
-							Lots of step 1 stuff here.
-							<span
-						</li>
-						<li id="step-2" class="step">
-							<h4 class="step-headline">Second Headline.</h4>
-							Step 2!
-						</li>
-						<li id="step-3" class="step">
-							<h4 class="step-headline">Third Headline.</h4>
-							Step 3!
-						</li>
-						<li id="step-4" class="step">
-							<h4 class="step-headline">Fourth Headline.</h4>
-							Step 4!
-						</li>
-						<li id="step-5" class="step">
-							<h4 class="step-headline">Fifth Headline.</h4>
-							Step 5!
-						</li>
-						<li id="step-6" class="step">
-							<h4 class="step-headline">Sixth Headline.</h4>
-							Step 6!
-						</li>
-						<li id="step-7" class="step">
-							<h4 class="step-headline">Seventh Headline.</h4>
-							Step 7!
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
 
 		<!-- if instructions, add class with-instructions -->
 		<div class="resizable-wrapper with-instructions">
-			<div class="editor">
-				<header class="panel-header">
-					<button id="run-js">Run JS</button><!-- this button works! -->
-					<button id="download-code" class="download-code-btn">Download Code</button> <!-- doesn't work yet, will integrate later -->
-					<h4>Code Editor</h4>
-				</header>
-				<div id="tabs">
-					<ul>
-						<li><a href="#tab-html">index.html</a></li>
-						<li><a href="#tab-css">style.css</a></li>
-						<li><a href="#tab-js">script.js</a></li>
-					</ul>
-					<form method="post" id="project-code">
-						<input type="hidden" id="html-bucket" name="html-bucket" />
-						<input type="hidden" id="css-bucket" name="css-bucket" />
-						<input type="hidden" id="js-bucket" name="js-bucket" />
+			<ul class="step-list right">
+				<li class="step clearfix code-editor">
+					<div class="project-editor">
+						<header class="panel-header">
+							<button id="run-js">Run JS</button><!-- this button works! -->
+							<button id="download-code" class="download-code-btn">Download Code</button> <!-- doesn't work yet, will integrate later -->
+							<h4>Code Editor</h4>
+						</header>
+						<div id="tabs">
+							<ul>
+								<li><a href="#tab-html">index.html</a></li>
+								<li><a href="#tab-css">style.css</a></li>
+								<li class="js-tab"><a href="#tab-js">script.js</a></li>
+							</ul>
 
-						<div id="tab-html">
-							<textarea id="html"></textarea>
-						</div>
-						<div id="tab-css">
-							<textarea id="css"></textarea>
-						</div>
-						<div id="tab-js">
-							<textarea id="js"></textarea>
-						</div>
-					</form>
-				</div>
-			</div>
+							<div id="form-code">
+								<input type="hidden" id="html-bucket" name="html-bucket" />
+								<input type="hidden" id="css-bucket" name="css-bucket" />
+								<input type="hidden" id="js-bucket" name="js-bucket" />
 
-			<div class="preview"> <!-- ADD THIS CLASS< TO SHOW CONSOLE  open-console -->
-				<header class="panel-header">
-					<h4>Preview</h4>
-				</header>
-				<iframe id="project-preview" sandbox="allow-scripts allow-same-origin"></iframe>
-				<div id="mask"></div>
-				<div id="output" class="console-log">
-					<header class="panel-header">
-						<h4>JS Console</h4>
-						<span class="alert-close">&times;</span>
-					</header>
-					<textarea></textarea>
-				</div>
-			</div>
+								<!-- here we need to display the default code in each tab if the user doesn't have any saved HTML, CSS & JS -->
+								<div id="tab-html">
+									<textarea id="html" tab="1"></textarea>
+								</div>
+								<div id="tab-css">
+									<textarea id="css"></textarea>
+								</div>
+								<div id="tab-js">
+									<textarea id="js"></textarea>
+								</div>
+							</div>
+							</form><!-- end full page form -->
+						</div>
+					</div>
+					<div class="preview open-console"> <!-- ADD open-console  CLASS TO SHOW CONSOLE-->
+						<header class="panel-header">
+							<h4>Preview</h4>
+						</header>
+						<iframe id="project-preview" sandbox="allow-scripts allow-same-origin"></iframe>
+						<div id="mask"></div>
+
+						<div  id="output" class="console-log"> <!-- ADD open-console  CLASS TO SHOW CONSOLE -->
+							<header class="panel-header">
+								<h4>JS Console</h4>
+								<span class="alert-close">&times;</span>
+							</header>
+
+							<link rel="stylesheet" type="text/css" media="all" href="js/javascript-sandbox-console-master/src/sandbox.css" />
+							<div id="sandbox">console loading...</div>
+
+							<!-- The sandbox template -->
+							<script type="text/template" id="tplSandbox">
+								<div class="output-wrap"><pre class="output"></pre></div>
+								<div class="input">
+									<textarea rows="1" placeholder="<%= placeholder %>"></textarea>
+								</div>
+							</script>
+						</div>
+					</div>
+				</li>
+			</ul>
 		</div>
 		<div class="clearfix"></div>
 	</section>
+
+<!-- The command/result template (NB whitespace/line breaks matter inside <pre> tag): -->
+<script type="text/template" id="tplCommand"><% if (! _hidden) { %><span class="command"><%= command %></span>
+<span class="prefix"><%= this.resultPrefix %></span><span class="<%= _class %>"><%= result %></span>
+<% } %></script>
+
+<script src="js/javascript-sandbox-console-master/src/libs/underscore.min.js"></script>
+<script src="js/javascript-sandbox-console-master/src/libs/backbone.min.js"></script>
+<script src="js/javascript-sandbox-console-master/src/libs/backbone-localStorage.min.js"></script><!-- opt -->
+
+<script src="js/javascript-sandbox-console-master/src/sandbox-console.js"></script>
+
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		// Create the sandbox:
+		window.sandbox = new Sandbox.View({
+			el : $('#sandbox'),
+			model : new Sandbox.Model({ iframe : true })
+		});
+		window.sandbox.model.bind("change", function(){
+			$('#sandbox .output-wrap').scrollTop($('#sandbox .output').height());
+		});
+	});
+</script>
 
 <!-- codemirror -->
 <script src="js/codemirror4.1/lib/codemirror.js"></script>
