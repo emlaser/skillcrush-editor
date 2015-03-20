@@ -389,3 +389,42 @@ var Sandbox = {
 		}
 	})
 };
+
+//function myFunctionThatMightHaveAnError(){
+	//// instead of just failing silently, actually throw an error
+	//$.error("My special error");
+//}
+
+
+(function () {
+	//if (!console) {
+		//console = {};
+	//}
+	//var old = console.log;
+	//var logger = document.getElementById('log');
+	//console.log = function (message) {
+		//if (typeof message == 'object') {
+			//logger.innerHTML += (JSON && JSON.stringify ? JSON.stringify(message) : String(message)) + '<br />';
+		//} else {
+			//logger.innerHTML += message + '<br />';
+		//}
+	//}	
+	
+	
+	//if (typeof console  != "undefined") 
+		//if (typeof console.log != 'undefined')
+			//console.olog = console.log;
+		//else
+			//console.olog = function() {};
+
+	//console.log = function(message) {
+		//console.olog(message);
+		//$('#log').append('<p>' + message + '</p>');
+	//};
+	//console.error = console.debug = console.info =  console.log
+	
+	
+	
+
+})();
+

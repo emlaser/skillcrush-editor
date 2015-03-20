@@ -55,6 +55,7 @@
 							<button id="download-code" class="download-code-btn">Download Code</button> <!-- doesn't work yet, will integrate later -->
 							<h4>Code Editor</h4>
 						</header>
+						<div id="log"></div>
 						<div id="tabs">
 							<ul>
 								<li><a href="#tab-html">index.html</a></li>
@@ -133,6 +134,26 @@
 		window.sandbox.model.bind("change", function(){
 			$('#sandbox .output-wrap').scrollTop($('#sandbox .output').height());
 		});
+		
+		ConsoleListener.on("log", function () {
+			var message = this;
+			 $('#log').append('<p>' + message + '</p>'); 
+		 });
+		/*
+		ConsoleListener.on("error", function () {
+			var message = "console error yeah";
+			 $('#log').append('<p>' + message + '</p>'); 
+		 });
+		ConsoleListener.on("warn", function () {
+			var message = "console warn yeah";
+			 $('#log').append('<p>' + message + '</p>'); 
+		 });
+		ConsoleListener.on("exception", function () {
+			var message = "console exception yeah";
+			 $('#log').append('<p>' + message + '</p>'); 
+		 });
+		 */
+		 
 	});
 </script>
 
@@ -155,6 +176,7 @@
 <link rel="stylesheet" href="js/codemirror4.1/addon/fold/foldgutter.css"> -->
 
 <script src="js/script.js"></script>
+<script src="js/console-listener.js"></script>
 </body>
 
 </html>

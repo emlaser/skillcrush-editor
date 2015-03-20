@@ -83,9 +83,14 @@ $(document).ready(function() {
 			}
 
 			// write html / js
-			preview.open();
-			preview.write(html);
-			preview.close();
+			try {
+				
+				preview.open();
+				preview.write(html);
+				preview.close();
+			} catch (e) {
+			  alert(e.name + ': ' + e.message);
+			}
 
 			// write css
 			if (css.length > 0) {
