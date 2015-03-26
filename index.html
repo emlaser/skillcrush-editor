@@ -135,24 +135,10 @@
 			$('#sandbox .output-wrap').scrollTop($('#sandbox .output').height());
 		});
 		
-		ConsoleListener.on("log", function () {
-			var message = this;
-			 $('#log').append('<p>' + message + '</p>'); 
+		//Show console.log messages in our custom sandbox console
+		ConsoleListener.on("log", function (message) {
+			 window.sandbox.model.displayString(message);
 		 });
-		/*
-		ConsoleListener.on("error", function () {
-			var message = "console error yeah";
-			 $('#log').append('<p>' + message + '</p>'); 
-		 });
-		ConsoleListener.on("warn", function () {
-			var message = "console warn yeah";
-			 $('#log').append('<p>' + message + '</p>'); 
-		 });
-		ConsoleListener.on("exception", function () {
-			var message = "console exception yeah";
-			 $('#log').append('<p>' + message + '</p>'); 
-		 });
-		 */
 		 
 	});
 </script>

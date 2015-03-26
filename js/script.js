@@ -75,33 +75,37 @@ $(document).ready(function() {
 		}
 
 		if (js) {
-			// prepare html
-			if (html.length > 0) {
-				html = '<body>' + html + '<script type="text/javascript">' + js + '</script></body>';
-			} else {
-				html = '<html><head></head><body><script type="text/javascript">' + js + '</script></body></html>';
-			}
-
-			// write html / js
+			
 			try {
+
+				eval(js);
 				
+				// prepare html
+				if (html.length > 0) {
+					html = '<body>' + html + '<script type="text/javascript">' + js + '</script></body>';
+				} else {
+					html = '<html><head></head><body><script type="text/javascript">' + js + '</script></body></html>';
+				}
+
+				// write html / js
 				preview.open();
 				preview.write(html);
 				preview.close();
-			} catch (e) {
-			  alert(e.name + ': ' + e.message);
-			}
+				
 
-			// write css
-			if (css.length > 0) {
-				$(previewFrame).contents().find('head').append('<style>' + css + '</style>');
-			}
-			if(window.sandbox) {
-				//sandbox.model.sandboxFrame.contentDocument.open();
-				//sandbox.model.sandboxFrame.contentDocument.write(html);
-				//sandbox.model.sandboxFrame.contentDocument.close();
-				//sandbox.model.evaluate(js);
-			}
+				// write css
+				if (css.length > 0) {
+					$(previewFrame).contents().find('head').append('<style>' + css + '</style>');
+				}
+				if(window.sandbox) {
+					//sandbox.model.sandboxFrame.contentDocument.open();
+					//sandbox.model.sandboxFrame.contentDocument.write(html);
+					//sandbox.model.sandboxFrame.contentDocument.close();
+					//sandbox.model.evaluate(js);
+				}
+			} catch(e) {
+	            window.sandbox.model.displayError(e.description || e.toString());
+          }
 		}
 	}
 
