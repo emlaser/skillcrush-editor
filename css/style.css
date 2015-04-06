@@ -509,6 +509,28 @@ input[type="submit"] {
 .preview.open-console #project-preview {
 	height: 65%;
 }
+.alert {
+	display: none;
+	background: #f4f4f4;
+	border: solid #e5e3e3;
+	border-width: 1px 0px;
+	border-radius: 0;
+	color: #000;
+	font: 400 1em/1.85em 'Open Sans', Arial, sans-serif;
+	letter-spacing: 0.05em;
+	padding: 30px 0;
+	text-align: center;
+	text-shadow: none;
+	width: 100%;
+	position: relative;
+	z-index: 100;
+	margin-bottom: 0;
+	margin-top: 0;
+}
+.alert p span {
+	font-weight: bold;
+	text-transform: uppercase
+}
 .console-log {
 	display: none;
 }

@@ -133,7 +133,12 @@ $(document).ready(function() {
 	// tab up the code areas
 	$('.project-editor #tabs').tabs();
 
-	$('.single-sc_projects #hint, .single-user_challenges #hint, .single-user_102_challenges #hint').on('click', function(e) {
+	// $('.single-sc_projects #hint, .single-user_challenges #hint, .single-user_102_challenges #hint').on('click', function(e) {
+	// 	e.preventDefault();
+	// 	$('.hint-text').addClass('active');
+	// });
+
+$('#hint').on('click', function(e) {
 		e.preventDefault();
 		$('.hint-text').addClass('active');
 	});
@@ -240,117 +245,117 @@ $(document).ready(function() {
 	}
 
 	// if instructions panel & steps, make deck of cards with hints!
-	if ($('.instructions').length > 0 && $('.step-list li').length > 0) {
-		$(function() {
-			$('.step-list').each(function() {
-				$li = $(this).find('> li');
-				var firstStepNum = $li.first().attr('data-id').replace('step-', '');
-				if ($('li.code-editor').length > 0) {
-					var lastStepNum = $li.last().prev().attr('data-id').replace('step-', '');
-				} else {
-					var lastStepNum = $li.last().attr('data-id').replace('step-', '');
-				}
-				var numSteps = $li.length;
-				var curStepNum;
+	// if ($('.instructions').length > 0 && $('.step-list li').length > 0) {
+	// 	$(function() {
+	// 		$('.step-list').each(function() {
+	// 			$li = $(this).find('> li');
+	// 			var firstStepNum = $li.first().attr('data-id').replace('step-', '');
+	// 			if ($('li.code-editor').length > 0) {
+	// 				var lastStepNum = $li.last().prev().attr('data-id').replace('step-', '');
+	// 			} else {
+	// 				var lastStepNum = $li.last().attr('data-id').replace('step-', '');
+	// 			}
+	// 			var numSteps = $li.length;
+	// 			var curStepNum;
 
-				if (window.location.hash) {
-					curStepNum = window.location.hash.replace('#step', '');
-					$(this).find('> li').removeClass('active');
-					if ($('.step-list.right > li[data-id="step-' + curStepNum + '"]').hasClass('editor-with-js') || $('.step-list.right > li[data-id="step-' + curStepNum + '"]').hasClass('editor-no-js')) {
-						if ($(this).hasClass('right')) {
-							var type = $('.step-list.right > li[data-id="step-' + curStepNum + '"]').data('type');
-							var editorLi = $(this).find('.code-editor');
-							$(editorLi).addClass('active ' + type);
-							if (type == 'editor-with-js') {
-								$('#run-js, #tab-js, #tabs .js-tab').show();
-							} else {
-								$('#run-js, #tab-js, #tabs .js-tab').hide();
-							}
-						} else {
-							$(this).find('li[data-id="step-' + curStepNum + '"]').addClass('active');
-						}
-					} else {
-						$('.step-list.right > li[data-id="step-' + curStepNum + '"]').addClass('active');
-						// $(this).find('li[data-id="step-' + curStepNum + '"]').addClass('active');
-					}
-					// $('.step-list.right > li[data-id="step-' + curStepNum + '"]').addClass('active');
-					$('.alert p#hint-' + curStepNum).addClass('active');
-					$('#current').text(curStepNum);
-				} else {
-					$li.first().addClass('active');
-					$('.alert p').first().addClass('active');
-					curStepNum = $(this).find('li.active').attr('data-id').replace('step-', '');
-					if (lastStepNum > 1 && curStepNum < lastStepNum) {
-						window.location.hash = '#step' + curStepNum;
-					}
-				}
+	// 			if (window.location.hash) {
+	// 				curStepNum = window.location.hash.replace('#step', '');
+	// 				$(this).find('> li').removeClass('active');
+	// 				if ($('.step-list.right > li[data-id="step-' + curStepNum + '"]').hasClass('editor-with-js') || $('.step-list.right > li[data-id="step-' + curStepNum + '"]').hasClass('editor-no-js')) {
+	// 					if ($(this).hasClass('right')) {
+	// 						var type = $('.step-list.right > li[data-id="step-' + curStepNum + '"]').data('type');
+	// 						var editorLi = $(this).find('.code-editor');
+	// 						$(editorLi).addClass('active ' + type);
+	// 						if (type == 'editor-with-js') {
+	// 							$('#run-js, #tab-js, #tabs .js-tab').show();
+	// 						} else {
+	// 							$('#run-js, #tab-js, #tabs .js-tab').hide();
+	// 						}
+	// 					} else {
+	// 						$(this).find('li[data-id="step-' + curStepNum + '"]').addClass('active');
+	// 					}
+	// 				} else {
+	// 					$('.step-list.right > li[data-id="step-' + curStepNum + '"]').addClass('active');
+	// 					// $(this).find('li[data-id="step-' + curStepNum + '"]').addClass('active');
+	// 				}
+	// 				// $('.step-list.right > li[data-id="step-' + curStepNum + '"]').addClass('active');
+	// 				$('.alert p#hint-' + curStepNum).addClass('active');
+	// 				$('#current').text(curStepNum);
+	// 			} else {
+	// 				$li.first().addClass('active');
+	// 				$('.alert p').first().addClass('active');
+	// 				curStepNum = $(this).find('li.active').attr('data-id').replace('step-', '');
+	// 				if (lastStepNum > 1 && curStepNum < lastStepNum) {
+	// 					window.location.hash = '#step' + curStepNum;
+	// 				}
+	// 			}
 				
-				// add step numbers to header
-				$('#current').text(curStepNum);
-				$('#total').text(lastStepNum);
+	// 			// add step numbers to header
+	// 			$('#current').text(curStepNum);
+	// 			$('#total').text(lastStepNum);
 
-				// if not the first step, show the prev button
-				if (curStepNum != firstStepNum) {
-					$('.steps-header #prev').show();
-				}
+	// 			// if not the first step, show the prev button
+	// 			if (curStepNum != firstStepNum) {
+	// 				$('.steps-header #prev').show();
+	// 			}
 
-				// if not the last step, show the next button
-				if (curStepNum != lastStepNum) {
-					$('.steps-header #next').show();
-				}
+	// 			// if not the last step, show the next button
+	// 			if (curStepNum != lastStepNum) {
+	// 				$('.steps-header #next').show();
+	// 			}
 
-				$('.steps-header button').click(function() {
-					var direction = $(this).attr('id'); // prev or next
-					if (direction.toLowerCase() == 'prev') {
-						curStepNum--;
-						if (curStepNum == firstStepNum) {
-							$(this).hide();
-						}
-						if (curStepNum < lastStepNum) {
-							$('.steps-header #next').show();
-						}
-					} else if (direction.toLowerCase() == 'next') {
-						curStepNum++;
-						if (curStepNum == numSteps) {
-							$(this).hide();
-						}
-						if (curStepNum > firstStepNum && curStepNum <= lastStepNum) {
-							$('.steps-header #prev').show();
-						}
-					}
-					$('.alert').slideUp('fast');
-					$('.button#hint').removeClass('active');
+	// 			$('.steps-header button').click(function() {
+	// 				var direction = $(this).attr('id'); // prev or next
+	// 				if (direction.toLowerCase() == 'prev') {
+	// 					curStepNum--;
+	// 					if (curStepNum == firstStepNum) {
+	// 						$(this).hide();
+	// 					}
+	// 					if (curStepNum < lastStepNum) {
+	// 						$('.steps-header #next').show();
+	// 					}
+	// 				} else if (direction.toLowerCase() == 'next') {
+	// 					curStepNum++;
+	// 					if (curStepNum == numSteps) {
+	// 						$(this).hide();
+	// 					}
+	// 					if (curStepNum > firstStepNum && curStepNum <= lastStepNum) {
+	// 						$('.steps-header #prev').show();
+	// 					}
+	// 				}
+	// 				$('.alert').slideUp('fast');
+	// 				$('.button#hint').removeClass('active');
 
-					$('.step-list').each(function() {
-						$(this).find('> li').removeClass('active');
-						if ($('.step-list.right > li[data-id="step-' + curStepNum + '"]').hasClass('editor-with-js') || $('.step-list.right > li[data-id="step-' + curStepNum + '"]').hasClass('editor-no-js')) {
-							if ($(this).hasClass('right')) {
-								var type = $('.step-list.right > li[data-id="step-' + curStepNum + '"]').data('type');
-								var editorLi = $(this).find('.code-editor');
-								$(editorLi).addClass('active ' + type);
-								if (type == 'editor-with-js') {
-									$('#run-js, #tab-js, #tabs .js-tab').show();
-								} else {
-									$('#run-js, #tab-js, #tabs .js-tab').hide();
-								}
-							} else {
-								$(this).find('li[data-id="step-' + curStepNum + '"]').addClass('active');
-							}
-						} else {
-							$(this).find('li[data-id="step-' + curStepNum + '"]').addClass('active');
-						}
-					});
-					//$('.step-list > li').removeClass('active'); // hide all step list
-					//$('.step-list > li[data-id="' + curStepNum + '"]').addClass('active');// show next step li
-					$('.alert p').removeClass('active'); // hide all hints
-					$('.alert p#hint-' + curStepNum).addClass('active'); // show next hint
-					$('#current').text(curStepNum); // update current step number in header
-					window.location.hash = 'step' + curStepNum; // update url hash
-				});
-			});
+	// 				$('.step-list').each(function() {
+	// 					$(this).find('> li').removeClass('active');
+	// 					if ($('.step-list.right > li[data-id="step-' + curStepNum + '"]').hasClass('editor-with-js') || $('.step-list.right > li[data-id="step-' + curStepNum + '"]').hasClass('editor-no-js')) {
+	// 						if ($(this).hasClass('right')) {
+	// 							var type = $('.step-list.right > li[data-id="step-' + curStepNum + '"]').data('type');
+	// 							var editorLi = $(this).find('.code-editor');
+	// 							$(editorLi).addClass('active ' + type);
+	// 							if (type == 'editor-with-js') {
+	// 								$('#run-js, #tab-js, #tabs .js-tab').show();
+	// 							} else {
+	// 								$('#run-js, #tab-js, #tabs .js-tab').hide();
+	// 							}
+	// 						} else {
+	// 							$(this).find('li[data-id="step-' + curStepNum + '"]').addClass('active');
+	// 						}
+	// 					} else {
+	// 						$(this).find('li[data-id="step-' + curStepNum + '"]').addClass('active');
+	// 					}
+	// 				});
+	// 				//$('.step-list > li').removeClass('active'); // hide all step list
+	// 				//$('.step-list > li[data-id="' + curStepNum + '"]').addClass('active');// show next step li
+	// 				$('.alert p').removeClass('active'); // hide all hints
+	// 				$('.alert p#hint-' + curStepNum).addClass('active'); // show next hint
+	// 				$('#current').text(curStepNum); // update current step number in header
+	// 				window.location.hash = 'step' + curStepNum; // update url hash
+	// 			});
+	// 		});
 			
-		});
-	}
+	// 	});
+	// }
 
 	// Hide js console
 	$('.console-log .alert-close').click(function() {

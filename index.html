@@ -40,10 +40,42 @@
 		<div class="clearfix"></div>
 	</section>
 
-
+	<section class="alert">
+		<p class="hint-text"><span>Hint:</span> This is a hint!</p>
+	</section>
 
 	<section class="project">
+		<div class="instructions">
+			<header class="panel-header">
+				<button class="button hint" id="hint">Hint</button>
+				<h4>Instructions</h4>
+			</header>
+			<div class="content">
+				<div class="steps-header">
+					<button class="button" id="prev"></button>
+					<button class="button" id="next"></button>
+					<h4>Do some stuff</h4>
+				</div>
+				<div class="step-content">
+					<!-- This is for when we integrate into our codebase! -->
+					<!-- <ul>
+						<?php foreach ($steps as $k => $v): ?>
+							<li id="step-<?php echo $k + 1 ?>">
+								<h4 class="step-headline"><?php echo $v['title'] ?></h4>
+								<?php echo $v['description'] ?>
+							</li>
+						<?php endforeach; ?>
+					</ul> -->
 
+					<ul class="step-list">
+						<!-- placeholder lis before integration -->
+						<li id="step-1" class="step">
+							Lots of step 1 stuff here.
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
 
 		<!-- if instructions, add class with-instructions -->
 		<div class="resizable-wrapper with-instructions">
